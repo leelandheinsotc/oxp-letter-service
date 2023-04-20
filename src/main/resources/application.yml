@@ -1,0 +1,118 @@
+logging:
+  level:
+    ROOT: INFO
+
+server:
+  port: 29270
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      jdbc:
+        use_streams_for_binary: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 9000000000000000000
+      initialization-fail-timeout: 9000000000000000000
+      maximum-pool-size: 10
+      minimum-idle: 1
+      pool-name: postgres-HikariPool
+  profiles:
+    active: default
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "default"
+db:
+  dbRegion: "us-east-1"
+  oxpDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-maas-db-operations-sa_adt_db-5pocC1"
+  adtDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-adt-operations-sa_adt_db-EbAtaL"
+  matterSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-maas-db-matters-sa_adt_db-2Ju4b1"
+
+LOB:
+  lobIntegrationUrl: "http://localhost:29220/oxplobintegration/createleterlob"
+
+DM:
+  documentManagementUrl: "http://localhost:29190/oxpdocumentmanagement/"
+
+SQS:
+  queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
+  queueName: "oxpMailDelay-dev"
+  secretName: "oxpEmailDelaySQSSecrets"
+  secretRegion: "us-east-1"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+db:
+  dbRegion: "us-east-1"
+  oxpDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-maas-db-operations-sa_adt_db-5pocC1"
+  adtDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-adt-operations-sa_adt_db-EbAtaL"
+  matterSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:dev-maas-db-matters-sa_adt_db-2Ju4b1"
+
+LOB:
+  lobIntegrationUrl: "http://localhost:29220/oxplobintegration/createleterlob"
+
+DM:
+  documentManagementUrl: "http://localhost:29190/oxpdocumentmanagement/"
+
+SQS:
+  queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
+  queueName: "oxpMailDelay-dev"
+  secretName: "oxpEmailDelaySQSSecrets"
+  secretRegion: "us-east-1"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "uat"
+db:
+  dbRegion: "us-east-1"
+  oxpDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-maas-db-operations-sa_adt_db-8e9O7w"
+  adtDbSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-adt-operations-sa_adt_db-w9hoLV"
+  matterSecret: "arn:aws:secretsmanager:us-east-1:775362322281:secret:uat-maas-db-matters-sa_adt_db-roh9Q2"
+
+LOB:
+  lobIntegrationUrl: "http://localhost:29220/oxplobintegration/createleterlob"
+
+DM:
+  documentManagementUrl: "http://localhost:29190/oxpdocumentmanagement/"
+
+SQS:
+  queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
+  queueName: "oxpMailDelay-uat"
+  secretName: "oxpEmailDelaySQSSecrets"
+  secretRegion: "us-east-1"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+db:
+  dbRegion: "us-east-1"
+  oxpDbSecret: "arn:aws:secretsmanager:us-east-1:917725857052:secret:oxp-rds-operations-sa_adt_db-yFxDeQ"
+  adtDbSecret: "arn:aws:secretsmanager:us-east-1:917725857052:secret:prod-maas-db-operations-wellsfargo-sa_adt_db-1kaflq"
+  matterSecret: "arn:aws:secretsmanager:us-east-1:917725857052:secret:oxp-rds-matters-sa_adt_db-VsKlgF"
+
+LOB:
+  lobIntegrationUrl: "http://localhost:29220/oxplobintegration/createleterlob"
+
+DM:
+  documentManagementUrl: "http://localhost:29190/oxpdocumentmanagement/"
+
+SQS:
+  queueEndPoint: "https://sqs.us-east-1.amazonaws.com/775362322281/"
+  queueName: "oxpMailDelay-prod"
+  secretName: "oxpEmailDelaySQSSecrets"
+  secretRegion: "us-east-1"
